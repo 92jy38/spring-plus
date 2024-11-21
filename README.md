@@ -13,7 +13,7 @@ CascadeType.PERSIST 사용해 영속화하여 할 일을 생성한 유저가 담
 
 fix: Lv2-7 N+1 문제
 - 기존 코드에서 JOIN이 사용되어 INNER JOIN 실행할텐데 N+1문제가 발생하는 이유를 모르겠음.
-- EntityGraph를 잘 알지 못하고 사용했던 기억이 있어 조금 더 공부하고 찾아보게됨.
+- 메모리 효율적인 측면에서 EntityGraph를 사용하였음.
 - fetchType. Lazy 와 Eager는 static 정보로 변경 할 수 없지만 EntityGraph 로 변경가능.
--  EntityGraph는 OUTER LEFT JOIN 방식 이기 때문에 N+1 발생하지 않음.
+- EntityGraph는 OUTER LEFT JOIN 방식 이기 때문에 N+1 발생하지 않음.
 - 1:N 컬렉션 같이 조회 해 오는경우 join 결과를 application으로 가져오고 memory에서 페이징처리 하는 Fetch Join과 차이가 있음. EntityGraph는 db에서 페이징 처리.
