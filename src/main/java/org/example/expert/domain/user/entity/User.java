@@ -18,23 +18,26 @@ public class User extends Timestamped {
     @Column(unique = true)
     private String email;
     private String password;
+    private String nickname;
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
-    public User(String email, String password, UserRole userRole) {
+    public User(String email, String password, UserRole userRole, String nickname) {
         this.email = email;
         this.password = password;
         this.userRole = userRole;
+        this.nickname = nickname;
     }
 
-    private User(Long id, String email, UserRole userRole) {
+    private User(Long id, String email, UserRole userRole, String nickname) {
         this.id = id;
         this.email = email;
         this.userRole = userRole;
+        this.nickname = nickname;
     }
 
     public static User fromAuthUser(AuthUser authUser) {
-        return new User(authUser.getId(), authUser.getEmail(), authUser.getUserRole());
+        return new User(authUser.getId(), authUser.getEmail(), authUser.getUserRole(), authUser.getNickName());
     }
 
     public void changePassword(String password) {
@@ -44,4 +47,6 @@ public class User extends Timestamped {
     public void updateRole(UserRole userRole) {
         this.userRole = userRole;
     }
+
+    public void updateNickname(String nickname) { this.nickname = nickname; }
 }
